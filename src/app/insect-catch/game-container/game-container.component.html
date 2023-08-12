@@ -1,0 +1,11 @@
+<div class="game-container">
+  <div class="time" *ngIf="timer">
+    <h3>Time:</h3>
+    <app-timer></app-timer>
+  </div>
+  <h3 class="score">Score: {{ score }}</h3>
+  <h5 class="message" [ngClass]="{'visible' : score > 12}">
+    Are you annoyed yet? <br>
+    You are playing an impossible game!!
+  </h5>
+</div>

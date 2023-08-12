@@ -1,0 +1,13 @@
+<h1>What is your "favorite" insect?</h1>
+<ul class="insects-list">
+  <li *ngFor="let insect of insects" (click)="chooseInsect(insect)">
+    <button class="choose-insect-btn" (mouseenter)="insect.showDescription = true"
+            (mouseleave)="insect.showDescription = false">
+      <p>{{insect.name}}</p>
+      <img [src]="insect.imagePath" [alt]="insect.name" >
+    </button>
+    <div class="description" *ngIf="insect.showDescription" [ngClass]="{'visible': insect.showDescription}">
+      <p>{{ insect.description }}</p>
+    </div>
+  </li>
+</ul>

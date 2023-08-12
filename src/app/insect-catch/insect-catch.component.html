@@ -1,34 +1,9 @@
-<!--screen 1-->
-<div class="screen" [ngClass]="{'up' : startGame}">
-  <h1>Catch The Insect</h1>
-  <button class="btn" id="start-btn" (click)="startGame = true">Play Game</button>
+<div class="screen" [ngClass]="{'up' : currentScreen >= 1}">
+  <app-start-game></app-start-game>
 </div>
-
-<!--screen 2-->
-<div class="screen" [ngClass]="{'up' : selectInsect}">
-  <h1>What is your "favorite" insect?</h1>
-  <ul class="insects-list">
-    <li *ngFor="let insect of insects">
-      <button class="choose-insect-btn"  (mouseenter)="insect.showDescription = true" (mouseleave)="insect.showDescription = false">
-        <p>{{insect.name}}</p>
-        <img [src]="insect.imagePath" [alt]="insect.name" (click)="chooseInsect(insect)">
-      </button>
-      <div class="description" *ngIf="insect.showDescription" [ngClass]="{'visible': insect.showDescription}">
-        <p>{{ insect.description }}</p>
-      </div>
-    </li>
-  </ul>
+<div class="screen" [ngClass]="{'up' : currentScreen === 2}">
+  <app-choose-insect (startTimer)="startTimer($event)"></app-choose-insect>
 </div>
-
-<!--screen 3-->
-<div class="screen game-container" id="game-container">
-  <div class="time" *ngIf="timer">
-    <h3>Time:</h3>
-    <app-timer></app-timer>
-  </div>
-  <h3 class="score">Score: {{ score }}</h3>
-  <h5 class="message" [ngClass]="{'visible' : score > 12}">
-    Are you annoyed yet? <br>
-    You are playing an impossible game!!
-  </h5>
+<div class="screen">
+  <app-game-container class="container" [timer]="timer"></app-game-container>
 </div>
